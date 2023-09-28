@@ -1,0 +1,18 @@
+---
+- name: Check FCPO User expire
+  hosts: all
+  become: yes
+  tasks:
+    - name: Check FCPO User
+      shell: |
+        if id fcpo
+        then
+            echo "Already existing "fcpo user" in server"
+        else
+            echo "Not have "fcpo user" in this server"
+        fi
+      register: fcpouser
+
+    - name: fcpo user in password
+      when: '"fcpo" in fcpouser.stdout'
+      debug: msg="fcpo user already exsiting"
