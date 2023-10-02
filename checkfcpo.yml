@@ -13,6 +13,6 @@
         fi
       register: fcpouser
 
-    - name: fcpo user in /etc/passwd
+    - name: fcpo user will existing in /etc/passwd 
       when: '"fcpo" in fcpouser.stdout'
       debug: msg="fcpo user already exsiting"
